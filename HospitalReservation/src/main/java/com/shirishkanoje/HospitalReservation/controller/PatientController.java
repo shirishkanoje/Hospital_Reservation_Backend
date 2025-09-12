@@ -68,7 +68,7 @@ public class PatientController {
         paymentLinkRequest.put("notify", notify);
 
         paymentLinkRequest.put("callback_url",
-                "http://localhost:8182/api/patient/payment-success?reservationId=" + reservation.getId());
+                "https://hospital-reservation-backend-1.onrender.com/api/patient/payment-success?reservationId=" + reservation.getId());
         paymentLinkRequest.put("callback_method", "get");
 
         PaymentLink paymentLink = razorpayClient.paymentLink.create(paymentLinkRequest);
@@ -145,3 +145,4 @@ public class PatientController {
 
 
 }
+
