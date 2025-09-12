@@ -96,7 +96,7 @@ public class PatientController {
         String html = """
         <html>
           <head>
-            <meta http-equiv="refresh" content="3;url=http://localhost:5173" />
+            <meta http-equiv="refresh" content="3;url=https://hospital-reservation-fullstack-syst.vercel.app/" />
             <style>
               body { font-family: sans-serif; text-align: center; padding-top: 50px; }
               .message { font-size: 1.5rem; color: green; }
@@ -149,5 +149,6 @@ public class PatientController {
 
 
 }
+
 
 
