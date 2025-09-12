@@ -28,7 +28,7 @@ public class PatientController {
     private final ReservationService reservationService;
     private final RazorpayClient razorpayClient;
 
-    // 🔹 New merged endpoint: Add patient + Book + Razorpay
+   // 🔹 New merged endpoint: Add patient + Book + Razorpay
     @PostMapping("/book-with-payment")
     public Map<String, Object> addAndBookPatient(@RequestBody Map<String, String> payload) throws RazorpayException {
         String name = payload.get("name");
@@ -54,7 +54,11 @@ public class PatientController {
         JSONObject paymentLinkRequest = new JSONObject();
         paymentLinkRequest.put("amount", amountInPaise);
         paymentLinkRequest.put("currency", "INR");
-        paymentLinkRequest.put("reference_id", reservation.getId().toString());
+
+        // 🔑 FIX: make reference_id unique
+        String uniqueReferenceId = reservation.getId() + "-" + System.currentTimeMillis();
+        paymentLinkRequest.put("reference_id", uniqueReferenceId);
+
         paymentLinkRequest.put("description", "Hospital Reservation Payment");
 
         JSONObject customer = new JSONObject();
@@ -145,4 +149,5 @@ public class PatientController {
 
 
 }
+
 
